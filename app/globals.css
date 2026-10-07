@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f3eee7;
+  --color-ivory-2: #e9e2d8;
+  --color-ink: #161411;
+  --color-ink-soft: #5d574f;
+  --color-night: #0e0d0c;
+  --color-night-2: #1a1816;
+  --color-champagne: #b89a6a;
+
+  --font-serif: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  body { font-family: var(--font-sans); overflow-x: clip; }
+  ::selection { background: var(--color-ink); color: var(--color-ivory); }
+  :focus-visible { outline: 1px solid var(--color-champagne); outline-offset: 4px; }
+}
+
+@layer components {
+  /* Rótulo editorial pequeno — o "sobrescrito" de cada cena */
+  .eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+  }
+  /* Máscara de linha para reveal de texto */
+  .line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .line-mask > span { display: block; will-change: transform; }
+
+  .hairline { height: 1px; background: currentColor; opacity: 0.18; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes scrollhint {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
